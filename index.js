@@ -10,5 +10,18 @@
 // ==/UserScript==
 
 (function () {
+  const inputSelector = '.chat-input';
+
+  const defineInput = () => {
+    const searchInput = document.querySelector(inputSelector);
+
+    if (!searchInput) {
+      setTimeout(defineInput(), 1000);
+      return;
+    }
+    return searchInput;
+  };
+
+  defineInput();
   console.log('hello, world');
 })();
