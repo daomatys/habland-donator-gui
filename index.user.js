@@ -14,9 +14,9 @@
   const buttonSelector = 'init-button'
   
   const markup = (`
-    <div class="${buttonSelector}">
+    <span class="${buttonSelector}">
       hello
-    </div>`
+    </span>`
   );
 
   document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
@@ -24,7 +24,14 @@
   const buttonElement = document.querySelector(`.${buttonSelector}`);
 
   if (buttonElement) {
-    buttonElement.addEventListener('click', () => { console.log('1')});
+    buttonElement.addEventListener('click', () => {
+      const elem = document.querySelector(inputSelector);
+      if (elem) {
+        const submitEvent = new Event('submit')
+        elem.value = ':teleport'
+        elem.dispatchEvent(submitEvent);
+      }
+    });
   }
   
 
