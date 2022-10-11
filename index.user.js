@@ -11,12 +11,13 @@
 
 (function () {
   const inputSelector = '.chat-input';
+  const buttonSelector = 'init-button'
 
   console.log(inputSelector);
   
   const markup = (`
-    <div class="sidebar">
-      <div class="sidebar__background" id="sidebar">
+    <div class="${buttonSelector}">
+      <div class="${buttonSelector}__background">
         hello
       </div>
     </div>`
@@ -24,5 +25,9 @@
 
   document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
   console.log(markup);
+
+  document.querySelector(inputSelector).addEventListener('load', () => {
+    console.log('OKOKOKOK');
+  })
   
 })();
