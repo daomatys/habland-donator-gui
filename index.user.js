@@ -19,13 +19,15 @@
     </span>`
   );
 
-  document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
+  const body = document.querySelector('body');
 
-  const buttonElement = document.querySelector(`.${buttonSelector}`);
+  body.insertAdjacentHTML('afterbegin', markup);
+
+  const buttonElement = body.querySelector(`.${buttonSelector}`);
 
   if (buttonElement) {
     buttonElement.addEventListener('click', () => {
-      const elem = document.querySelector(inputSelector);
+      const elem = body.querySelector(inputSelector);
       if (elem) {
         console.log('found');
         const submitEvent = new SubmitEvent();
