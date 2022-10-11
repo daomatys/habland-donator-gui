@@ -22,9 +22,7 @@
     </div>`
   );
 
-  document.addEventListener('load', () => {
-    document.insertAdjacentHTML('afterbegin', markup);
-    console.log(markup);
-  });
+  document.insertAdjacentHTML('afterbegin', markup);
+  console.log(markup);
   
 })();
