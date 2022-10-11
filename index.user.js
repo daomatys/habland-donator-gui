@@ -22,7 +22,7 @@
     </div>`
   );
 
-  document.insertAdjacentHTML('afterbegin', markup);
+  document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
   console.log(markup);
   
 })();
