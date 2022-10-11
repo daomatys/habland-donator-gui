@@ -14,9 +14,9 @@
   const buttonSelector = 'init-button'
   
   const markup = (`
-    <span class="${buttonSelector}">
+    <button class="${buttonSelector}">
       hello
-    </span>`
+    </button>`
   );
 
   const body = document.querySelector('body');
@@ -27,7 +27,7 @@
 
   if (buttonElement) {
     buttonElement.addEventListener('click', () => {
-      const elem = body.querySelector(inputSelector).firstChild;
+      const elem = body.querySelector(inputSelector).firstElementChild;
       console.log(elem)
       if (elem) {
         const submitEvent = new SubmitEvent();
