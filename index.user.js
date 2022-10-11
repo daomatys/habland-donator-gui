@@ -23,7 +23,10 @@
 
   const buttonElement = document.querySelector(`.${buttonSelector}`);
 
-  buttonElement.onclick(() => {console.log('1')})
+  if (buttonElement) {
+    buttonElement.onclick = () => { console.log('1') };
+  }
+  
 
   document.addEventListener('DOMContentLoaded', () => {
     console.log('OKOKOKOK');
