@@ -28,13 +28,11 @@
   if (buttonElement) {
     buttonElement.addEventListener('click', () => {
       const elem = body.querySelector(inputSelector);
+      console.log(elem)
       if (elem) {
-        console.log('found');
         const submitEvent = new SubmitEvent();
         elem.value = ':teleport';
         elem.dispatchEvent(submitEvent);
-      } else {
-        console.log('not found');
       }
     });
   } 
