@@ -24,7 +24,7 @@
   const buttonElement = document.querySelector(`.${buttonSelector}`);
 
   if (buttonElement) {
-    buttonElement.onclick = () => { console.log('1') };
+    buttonElement.addEventListener('click', () => { console.log('1')});
   }
   
 
