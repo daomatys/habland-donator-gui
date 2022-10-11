@@ -11,6 +11,8 @@
 
 (function () {
   const inputSelector = '.chat-input';
+
+  console.log(inputSelector);
   
   const markup = (`
     <div class="sidebar">
@@ -20,9 +22,9 @@
     </div>`
   );
 
-  document.addEventListener('load', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     document.insertAdjacentHTML('afterbegin', markup);
     console.log(markup);
-  })
+  });
   
 })();
