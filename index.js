@@ -15,26 +15,10 @@
   const markup = (`
     <div class="sidebar">
       <div class="sidebar__background" id="sidebar">
-        <img src="src/assets/graphics/sidebar.png">
+        hello
       </div>
-      <div class="sidebar__buttons-row"></div>
     </div>`
   );
 
   document.insertAdjacentHTML('afterbegin', markup);
-
-
-  const defineInput = () => {
-    const searchInput = document.querySelector(inputSelector);
-
-    if (!searchInput) {
-      setTimeout(defineInput(), 5000);
-      return;
-    }
-    return searchInput;
-  };
-
-  setTimeout(_, 1000)
-  defineInput();
-  console.log('hello, world');
 })();
