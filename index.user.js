@@ -22,7 +22,7 @@
     </div>`
   );
 
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('load', () => {
     document.insertAdjacentHTML('afterbegin', markup);
     console.log(markup);
   });
