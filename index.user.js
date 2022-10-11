@@ -10,7 +10,7 @@
 // ==/UserScript==
 
 (function () {
-  const inputSelector = '.chat-input';
+  const inputSelector = '.input-sizer';
   const buttonSelector = 'init-button'
   
   const markup = (`
@@ -27,7 +27,7 @@
 
   if (buttonElement) {
     buttonElement.addEventListener('click', () => {
-      const elem = body.querySelector(inputSelector);
+      const elem = body.querySelector(inputSelector).firstChild;
       console.log(elem)
       if (elem) {
         const submitEvent = new SubmitEvent();
