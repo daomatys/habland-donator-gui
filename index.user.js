@@ -27,16 +27,13 @@
     buttonElement.addEventListener('click', () => {
       const elem = document.querySelector(inputSelector);
       if (elem) {
+        console.log('found');
         const submitEvent = new SubmitEvent();
         elem.value = ':teleport';
         elem.dispatchEvent(submitEvent);
+      } else {
+        console.log('not found');
       }
     });
-  }
-  
-
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log('OKOKOKOK');
-  })
-  
+  } 
 })();
