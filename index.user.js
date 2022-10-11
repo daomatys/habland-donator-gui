@@ -23,11 +23,11 @@
 
   body.insertAdjacentHTML('afterbegin', markup);
 
-  const buttonElement = body.querySelector(`.${buttonSelector}`);
+  const buttonElement = document.querySelector(`.${buttonSelector}`);
 
   if (buttonElement) {
     buttonElement.addEventListener('click', () => {
-      const elem = body.querySelector(inputSelector).firstElementChild;
+      const elem = document.querySelector(inputSelector).firstElementChild;
       console.log(elem)
       if (elem) {
         const submitEvent = new SubmitEvent();
