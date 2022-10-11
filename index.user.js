@@ -27,8 +27,8 @@
     buttonElement.addEventListener('click', () => {
       const elem = document.querySelector(inputSelector);
       if (elem) {
-        const submitEvent = new KeyboardEvent('keyup', { key: 'enter' })
-        elem.value = ':teleport'
+        const submitEvent = new SubmitEvent();
+        elem.value = ':teleport';
         elem.dispatchEvent(submitEvent);
       }
     });
