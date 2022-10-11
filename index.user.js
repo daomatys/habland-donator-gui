@@ -26,7 +26,7 @@
   document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
   console.log(markup);
 
-  document.querySelector(inputSelector).addEventListener('load', () => {
+  document.addEventListener('DOMContentLoaded', () => {
     console.log('OKOKOKOK');
   })
   
