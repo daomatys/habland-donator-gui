@@ -20,5 +20,9 @@
     </div>`
   );
 
-  document.insertAdjacentHTML('afterbegin', markup);
+  document.addEventListener('DOMContentLoaded', () => {
+    document.insertAdjacentHTML('afterbegin', markup);
+    console.log('hello');
+  })
+  
 })();
