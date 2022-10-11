@@ -12,19 +12,18 @@
 (function () {
   const inputSelector = '.chat-input';
   const buttonSelector = 'init-button'
-
-  console.log(inputSelector);
   
   const markup = (`
     <div class="${buttonSelector}">
-      <div class="${buttonSelector}__background">
-        hello
-      </div>
+      hello
     </div>`
   );
 
   document.querySelector('body').insertAdjacentHTML('afterbegin', markup);
-  console.log(markup);
+
+  const buttonElement = document.querySelector(`.${buttonSelector}`);
+
+  buttonElement.onclick(() => {console.log('1')})
 
   document.addEventListener('DOMContentLoaded', () => {
     console.log('OKOKOKOK');
