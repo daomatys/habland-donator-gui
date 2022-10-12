@@ -23,11 +23,13 @@ const defineElement = (className) => {
 };
 
 const defineButtonElement = (cmnd) => {
-  defineElement(defineButtonCN(cmnd));
+  return defineElement(defineButtonCN(cmnd));
 };
 
 const onButtonClick = (cmnd, toggle, foruser) => {
   const inputWrap = defineElement(CN_INPUT_WRAP);
+
+  console.log(inputWrap);
 
   if (inputWrap) {
     const input = inputWrap.firstElementChild;
@@ -75,8 +77,11 @@ const MARKUP_GUI = (`
       text-align: center;
       background-color: #d4b5f7;
       z-index: 1002;
+      user-select: none;
+      cursor: pointer;
     }
     .${CN_GUI_BUTTON}-toggled {
+      background-color: red !important;
       border: 1px solid #131313;
     }
   </style>
