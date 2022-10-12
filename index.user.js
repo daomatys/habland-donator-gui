@@ -38,5 +38,5 @@ const renderPanel = () => {
 
   console.log('initialized', buttonElement);
 
-  buttonElement.addEventListener('click', renderPanel, true);
+  buttonElement.addEventListener('click', () => {console.log(true)}, true);
 })();
