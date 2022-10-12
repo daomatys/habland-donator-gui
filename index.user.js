@@ -12,9 +12,9 @@
 const inputSelector = '.input-sizer';
 const buttonSelector = 'init-button';
 const markup = (`
-  <button class="${buttonSelector}">
+  <div class="${buttonSelector}">
     hello
-  </button>`
+  </div>`
 );
 
 const defineElement = (selector) => document.querySelector(selector);
