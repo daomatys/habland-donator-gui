@@ -21,26 +21,28 @@ const defineElement = (className) => {
   const elem = document.querySelector(`.${className}`);
   console.log(elem)
   return elem;
-}
+};
 
 const renderPanel = () => {
   console.log('click');
-  const elem = defineElement(buttonClassName);
+  const elem = defineElement(inputClassName);
   console.log(elem);
-  const input = elem.firstChild;
+  const input = elem.firstElementChild;
   console.log(input);
 
-  const submitEvent = new SubmitEvent();
-  elem.value = ':teleport';
-  elem.dispatchEvent(submitEvent);
-  console.log('done!')
+  if (input) {
+    const submitEvent = new SubmitEvent();
+    elem.value = ':teleport';
+    elem.dispatchEvent(submitEvent);
+    console.log('done!');
+  }
 };
 
 (function () {
-  const body = document.querySelector('body');
-  const buttonElement = defineElement(buttonClassName);
+  document
+    .querySelector('body')
+    .insertAdjacentHTML('afterbegin', markup);
 
-  body.insertAdjacentHTML('afterbegin', markup);
-
-  buttonElement.addEventListener('click', () => {renderPanel()});
+  defineElement(buttonClassName)
+    .addEventListener('click', () => {renderPanel()});
 })();
