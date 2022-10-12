@@ -13,15 +13,16 @@ const CN_INPUT_WRAP = 'input-sizer';
 const CN_GUI = 'don-gui';
 const CN_GUI_BUTTON = 'don-gui__button';
 
-const defineButtonCN = (cmnd, toggle) => {
-  const baseCN = `${CN_GUI_BUTTON}-${cmnd}`;
-  const sideCN = toggle ? `${CN_GUI_BUTTON}-off` : '';
-
-  return (`${baseCN} ${sideCN}`).trim();
+const defineButtonCN = (cmnd) => {
+  return `${CN_GUI_BUTTON}-${cmnd}`;
 };
 
 const defineElement = (className) => {
   return document.querySelector(`.${className}`);
+};
+
+const defineButtonElement = (cmnd) => {
+  defineElement(defineButtonCN(cmnd));
 };
 
 const onButtonClick = (cmnd, toggle, foruser) => {
@@ -32,8 +33,15 @@ const onButtonClick = (cmnd, toggle, foruser) => {
   
     if (input) {
       const submitEvent = new SubmitEvent();
-      elem.value = `:${cmnd}`;
-      elem.dispatchEvent(submitEvent);
+      elem.value = `:${cmnd} `;
+      if (!foruser) {
+        elem.dispatchEvent(submitEvent);
+      }
+      if (toggle) {
+        defineButtonElement(cmnd)
+          .classList
+          .toggle(defineButtonCN('toggled'));
+      }
       console.log('done!');
     } else {
       console.log('input not found');
@@ -61,7 +69,11 @@ const MARKUP_GUI = (`
       z-index: 1001;
     }
     .${CN_GUI_BUTTON} {
+      background-color: #432000;
       z-index: 1002;
+    }
+    .${CN_GUI_BUTTON}-toggled {
+      border: 1px solid #131313;
     }
   </style>
   <div class="${CN_GUI}">
@@ -83,6 +95,6 @@ const MARKUP_GUI = (`
   
   MARKUP_GUI_BUTTONS.forEach(
     ({ cmnd, toggle, foruser }) => {
-      defineElement(defineButtonCN(cmnd)).addEventListener('click', () => {onButtonClick(cmnd, toggle, foruser)})
+      defineButtonElement(cmnd).addEventListener('click', () => {onButtonClick(cmnd, toggle, foruser)})
     })
 })();
