@@ -42,7 +42,5 @@ const renderPanel = () => {
 
   body.insertAdjacentHTML('afterbegin', markup);
 
-  console.log('initialized', buttonElement);
-
   buttonElement.addEventListener('click', () => {renderPanel()});
 })();
