@@ -14,59 +14,7 @@ const CN_BUTTON = 'init-button';
 const CN_GUI = 'don-gui';
 const CN_GUI_BUTTON = 'don-gui__button';
 
-const MARKUP_GUI_BUTTONS = [
-  { label: 'T', suffix: 'teleport', acton: false, toggle: true  },
-  { label: 'X', suffix: 'shoot',    acton: false, toggle: false },
-];
-
-const MARKUP_BUTTON = (`
-  <style type="text/css">
-    .${CN_BUTTON} {
-      position: absolute;
-      top: 10%;
-      left: 10%;
-      z-index: 1000;
-      background-color: #42b700;
-    }
-  </style>
-  <button class="${CN_BUTTON}">
-    INIT GUI
-  </button>`
-);
-
-const MARKUP_GUI = (`
-  <style type="text/css">
-    .${CN_GUI} {
-      position: absolute;
-      display: grid;
-      bottom: 5%;
-      left: 50%;
-      z-index: 1001;
-      background-color: #42b700;
-    }
-    .${CN_GUI_BUTTON} {
-      z-index: 1002;
-    }
-  </style>
-  <div class="${CN_GUI}">
-    ${MARKUP_GUI_BUTTONS
-      .map(({ label, suffix, toggle }) => (`
-        <div class="${CN_GUI_BUTTON}-${suffix} ${toggle && `${CN_GUI_BUTTON}-off`}">
-          ${label}
-        </div>`
-      ))
-      .join('')
-    }
-  </div>`
-);
-
-const defineElement = (className) => {
-  const elem = document.querySelector(`.${className}`);
-  console.log(elem);
-  return elem;
-};
-
-const renderGUI = () => {
+const onButtonClick = (cmnd) => {
   const inputWrap = defineElement(CN_INPUT_WRAP);
 
   if (inputWrap) {
@@ -74,7 +22,7 @@ const renderGUI = () => {
   
     if (input) {
       const submitEvent = new SubmitEvent();
-      elem.value = ':teleport';
+      elem.value = `:${cmnd}`;
       elem.dispatchEvent(submitEvent);
       console.log('done!');
     } else {
@@ -85,15 +33,51 @@ const renderGUI = () => {
   }
 };
 
+const MARKUP_GUI_BUTTONS = [
+  { label: 'T', cmnd: 'teleport', toggle: true,  foruser: false  },
+  { label: 'S', cmnd: 'shoot',    toggle: false, foruser: true }
+];
+
+const MARKUP_GUI = (`
+  <style type="text/css">
+    .${CN_GUI} {
+      position: absolute;
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-rows: repeat(2, auto);
+      grid-gap: 2px;
+      bottom: 5%;
+      left: 50%;
+      z-index: 1001;
+    }
+    .${CN_GUI_BUTTON} {
+      z-index: 1002;
+    }
+  </style>
+  <div class="${CN_GUI}">
+    ${MARKUP_GUI_BUTTONS
+      .map(({ label, cmnd, toggle }) => (`
+        <div class="${CN_GUI_BUTTON}-${cmnd} ${(toggle && `${CN_GUI_BUTTON}-off`) || ''}">
+          ${label}
+        </div>`
+      ))
+      .join('')
+    }
+  </div>`
+);
+
+const defineElement = (className) => {
+  const elem = document.querySelector(`.${className}`);
+  return elem;
+};
+
 (function () {
   document
     .querySelector('body')
-    .insertAdjacentHTML('afterbegin', MARKUP_BUTTON);
-
-  document
-    .querySelector('body')
     .insertAdjacentHTML('afterbegin', MARKUP_GUI);
-
-  defineElement(CN_BUTTON)
-    .addEventListener('click', () => {renderGUI();});
+  
+  MARKUP_GUI_BUTTONS.forEach(
+    ({ cmnd, toggle, foruser }) => {
+      defineElement(`${CN_GUI_BUTTON}-${cmnd}`).addEventListener('click', () => {onButtonClick(cmnd, toggle, foruser)})
+    })
 })();
