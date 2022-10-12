@@ -91,6 +91,14 @@ const MARKUP_GUI = (`
 
 (function () {
   defineElement('page_block').insertAdjacentHTML('afterbegin', MARKUP_GUI);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOMContentLoaded');
+  });
+
+  document.addEventListener('load', () => {
+    console.log('load');
+  });
   
   PROPS_GUI_BUTTONS.forEach(
     ({ cmnd, toggle, foruser }) => {
