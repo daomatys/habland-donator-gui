@@ -30,6 +30,7 @@ const renderPanel = () => {
   const submitEvent = new SubmitEvent();
   elem.value = ':teleport';
   elem.dispatchEvent(submitEvent);
+  console.log('done!')
 };
 
 (function () {
@@ -37,7 +38,7 @@ const renderPanel = () => {
 
   body.insertAdjacentHTML('afterbegin', markup);
 
-  const buttonElement = elem(buttonClassName);
+  const buttonElement = defineElement(buttonClassName);
 
   console.log('initialized', buttonElement);
 
