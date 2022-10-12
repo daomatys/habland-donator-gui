@@ -89,20 +89,19 @@ const MARKUP_GUI = (`
   </div>`
 );
 
-(function () {
+const renderGUI = () => {
   defineElement('page_block').insertAdjacentHTML('afterbegin', MARKUP_GUI);
 
-  document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOMContentLoaded');
-  });
-
-  document.addEventListener('load', () => {
-    console.log('load');
-  });
-  
   PROPS_GUI_BUTTONS.forEach(
     ({ cmnd, toggle, foruser }) => {
       defineButtonElement(cmnd).addEventListener('click', () => {onButtonClick(cmnd, toggle, foruser)})
     }
   );
+};
+
+(function () {
+  window.addEventListener('load', () => {
+    renderGUI();
+    console.log('GUI successfully loaded.');
+  });
 })();
