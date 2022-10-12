@@ -25,16 +25,20 @@ const defineElement = (className) => {
 
 const renderPanel = () => {
   const inputWrap = defineElement(inputClassName);
-  console.log('inputWrap: ', inputWrap);
 
-  const input = inputWrap.firstElementChild;
-  console.log('input: ', input);
-
-  if (input) {
-    const submitEvent = new SubmitEvent();
-    elem.value = ':teleport';
-    elem.dispatchEvent(submitEvent);
-    console.log('done!');
+  if (inputWrap) {
+    const input = inputWrap.firstElementChild;
+  
+    if (input) {
+      const submitEvent = new SubmitEvent();
+      elem.value = ':teleport';
+      elem.dispatchEvent(submitEvent);
+      console.log('done!');
+    } else {
+      console.log('input not found');
+    }
+  } else {
+    console.log('inputWrap not found');
   }
 };
 
