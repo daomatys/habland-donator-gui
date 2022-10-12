@@ -9,34 +9,37 @@
 // @grant         none
 // ==/UserScript==
 
-const inputSelector = '.input-sizer';
-const buttonSelector = 'init-button';
+const inputClassName = 'input-sizer';
+const buttonClassName = 'init-button';
 const markup = (`
-  <div class="${buttonSelector}">
+  <div class="${buttonClassName}">
     hello
   </div>`
 );
 
-const defineElement = (selector) => document.querySelector(selector);
+const getElemByCName = (className) => {
+  const elem = document.querySelector(`.${className}`);
+  console.log(elem)
+  return elem;
+}
 
 const renderPanel = () => {
-  const elem = defineElement(inputSelector).firstElementChild;
-  console.log(elem)
-  if (elem) {
-    const submitEvent = new SubmitEvent();
-    elem.value = ':teleport';
-    elem.dispatchEvent(submitEvent);
-  }
+  console.log('click');
+  const elem = getElemByCName(`.${buttonClassName}`).firstElementChild;
+
+  const submitEvent = new SubmitEvent();
+  elem.value = ':teleport';
+  elem.dispatchEvent(submitEvent);
 };
 
 (function () {
-  const body = defineElement('body');
+  const body = getElemByCName('body');
 
   body.insertAdjacentHTML('afterbegin', markup);
 
-  const buttonElement = defineElement(`.${buttonSelector}`);
+  const buttonElement = getElemByCName(buttonClassName);
 
   console.log('initialized', buttonElement);
 
-  buttonElement.addEventListener('click', () => {console.log(true)}, true);
+  buttonElement.addEventListener('click', () => {renderPanel()});
 })();
