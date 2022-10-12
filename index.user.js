@@ -12,6 +12,8 @@
 (function () {
   const inputSelector = '.input-sizer';
   const buttonSelector = 'init-button'
+
+  console.log('initialized');
   
   const markup = (`
     <button class="${buttonSelector}">
