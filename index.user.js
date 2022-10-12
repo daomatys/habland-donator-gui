@@ -12,8 +12,6 @@
 (function () {
   const inputSelector = '.input-sizer';
   const buttonSelector = 'init-button'
-
-  console.log('initialized');
   
   const markup = (`
     <button class="${buttonSelector}">
@@ -27,15 +25,15 @@
 
   const buttonElement = document.querySelector(`.${buttonSelector}`);
 
-  if (buttonElement) {
-    buttonElement.addEventListener('click', () => {
-      const elem = document.querySelector(inputSelector).firstElementChild;
-      console.log(elem)
-      if (elem) {
-        const submitEvent = new SubmitEvent();
-        elem.value = ':teleport';
-        elem.dispatchEvent(submitEvent);
-      }
-    });
-  } 
+  console.log('initialized', buttonElement);
+
+  buttonElement.addEventListener('click', () => {
+    const elem = document.querySelector(inputSelector).firstElementChild;
+    console.log(elem)
+    if (elem) {
+      const submitEvent = new SubmitEvent();
+      elem.value = ':teleport';
+      elem.dispatchEvent(submitEvent);
+    }
+  });
 })();
