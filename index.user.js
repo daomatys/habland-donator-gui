@@ -90,18 +90,20 @@ const MARKUP_GUI = (`
 );
 
 const renderGUI = () => {
-  defineElement('page_block').insertAdjacentHTML('afterbegin', MARKUP_GUI);
+  setTimeout(() => {
+    defineElement('page_block').insertAdjacentHTML('afterbegin', MARKUP_GUI);
 
-  PROPS_GUI_BUTTONS.forEach(
-    ({ cmnd, toggle, foruser }) => {
-      defineButtonElement(cmnd).addEventListener('click', () => {onButtonClick(cmnd, toggle, foruser)})
-    }
-  );
+    PROPS_GUI_BUTTONS.forEach(
+      ({ cmnd, toggle, foruser }) => {
+        defineButtonElement(cmnd).addEventListener('click', () => {onButtonClick(cmnd, toggle, foruser)})
+      }
+    );
+  }, 6000);
+  console.log('GUI successfully loaded.');
 };
 
 (function () {
   window.addEventListener('load', () => {
     renderGUI();
-    console.log('GUI successfully loaded.');
   });
 })();
