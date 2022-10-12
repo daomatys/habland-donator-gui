@@ -9,8 +9,6 @@
 // @grant         none
 // ==/UserScript==
 
-const CN_INPUT = 'chat-input';
-
 const CN_GUI = 'don-gui';
 const CN_GUI_BUTTON = `${CN_GUI}__button`;
 
@@ -26,8 +24,8 @@ const defineButtonElement = (cmnd) => {
   return defineElement(defineButtonCN(cmnd));
 };
 
-const onButtonClick = (cmnd, toggle, foruser) => {
-  const input = defineElement(CN_INPUT);
+const onButtonClick = (cmnd, foruser) => {
+  const input = defineElement('chat-input');
 
   if (input) {
     input.value = `:${cmnd} `;
@@ -89,7 +87,7 @@ const MARKUP_GUI = (`
   </div>`
 );
 
-const renderGUI = () => {
+const renderGUI = async () => {
   return new Promise((resolve) => {
     setTimeout(() => {
       defineElement('page_block').insertAdjacentHTML('afterbegin', MARKUP_GUI);
