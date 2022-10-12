@@ -10,11 +10,21 @@
 // ==/UserScript==
 
 const CN_INPUT_WRAP = 'input-sizer';
-const CN_BUTTON = 'init-button';
 const CN_GUI = 'don-gui';
 const CN_GUI_BUTTON = 'don-gui__button';
 
-const onButtonClick = (cmnd) => {
+const defineButtonCN = (cmnd, toggle) => {
+  const baseCN = `${CN_GUI_BUTTON}-${cmnd}`;
+  const sideCN = toggle ? `${CN_GUI_BUTTON}-off` : '';
+
+  return (`${baseCN} ${sideCN}`).trim();
+};
+
+const defineElement = (className) => {
+  return document.querySelector(`.${className}`);
+};
+
+const onButtonClick = (cmnd, toggle, foruser) => {
   const inputWrap = defineElement(CN_INPUT_WRAP);
 
   if (inputWrap) {
@@ -57,7 +67,7 @@ const MARKUP_GUI = (`
   <div class="${CN_GUI}">
     ${MARKUP_GUI_BUTTONS
       .map(({ label, cmnd, toggle }) => (`
-        <div class="${CN_GUI_BUTTON}-${cmnd} ${(toggle && `${CN_GUI_BUTTON}-off`) || ''}">
+        <div class="${defineButtonCN(cmnd, toggle)} }">
           ${label}
         </div>`
       ))
@@ -66,11 +76,6 @@ const MARKUP_GUI = (`
   </div>`
 );
 
-const defineElement = (className) => {
-  const elem = document.querySelector(`.${className}`);
-  return elem;
-};
-
 (function () {
   document
     .querySelector('body')
@@ -78,6 +83,6 @@ const defineElement = (className) => {
   
   MARKUP_GUI_BUTTONS.forEach(
     ({ cmnd, toggle, foruser }) => {
-      defineElement(`${CN_GUI_BUTTON}-${cmnd}`).addEventListener('click', () => {onButtonClick(cmnd, toggle, foruser)})
+      defineElement(defineButtonCN(cmnd)).addEventListener('click', () => {onButtonClick(cmnd, toggle, foruser)})
     })
 })();
