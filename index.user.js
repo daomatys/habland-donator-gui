@@ -9,7 +9,7 @@
 // @grant         none
 // ==/UserScript==
 
-const CN_INPUT_WRAP = 'input-sizer';
+const CN_INPUT = 'chat-input';
 
 const CN_GUI = 'don-gui';
 const CN_GUI_BUTTON = `${CN_GUI}__button`;
@@ -27,30 +27,22 @@ const defineButtonElement = (cmnd) => {
 };
 
 const onButtonClick = (cmnd, toggle, foruser) => {
-  const inputWrap = defineElement(CN_INPUT_WRAP);
+  const input = defineElement(CN_INPUT);
 
-  console.log(inputWrap);
-
-  if (inputWrap) {
-    const input = inputWrap.firstElementChild;
-  
-    if (input) {
-      const submitEvent = new SubmitEvent();
-      elem.value = `:${cmnd} `;
-      if (!foruser) {
-        elem.dispatchEvent(submitEvent);
-      }
-      if (toggle) {
-        defineButtonElement(cmnd)
-          .classList
-          .toggle(defineButtonCN('toggled'));
-      }
-      console.log('done!');
-    } else {
-      console.log('input not found');
+  if (input) {
+    const submitEvent = new SubmitEvent();
+    input.value = `:${cmnd} `;
+    if (!foruser) {
+      input.dispatchEvent(submitEvent);
     }
+    if (toggle) {
+      defineButtonElement(cmnd)
+        .classList
+        .toggle(defineButtonCN('toggled'));
+    }
+    console.log('done!');
   } else {
-    console.log('inputWrap not found');
+    console.log('input not found');
   }
 };
 
