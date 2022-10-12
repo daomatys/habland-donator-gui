@@ -32,14 +32,13 @@ const onButtonClick = (cmnd, toggle, foruser) => {
   if (input) {
     input.value = `:${cmnd} `;
 
-    if (!foruser) {
-      const submitEvent = new SubmitEvent();
-      input.dispatchEvent(submitEvent);
-    }
-    if (toggle) {
+    if (foruser) {
       defineButtonElement(cmnd)
         .classList
         .toggle(defineButtonCN('toggled'));
+    } else {
+      const submitEvent = new SubmitEvent();
+      input.dispatchEvent(submitEvent);
     }
     console.log('done!');
   } else {
@@ -47,9 +46,9 @@ const onButtonClick = (cmnd, toggle, foruser) => {
   }
 };
 
-const MARKUP_GUI_BUTTONS = [
-  { label: 'T', cmnd: 'teleport', toggle: true,  foruser: false  },
-  { label: 'S', cmnd: 'shoot',    toggle: false, foruser: true }
+const PROPS_GUI_BUTTONS = [
+  { label: 'T', cmnd: 'teleport', foruser: false },
+  { label: 'S', cmnd: 'shoot',    foruser: true  }
 ];
 
 const MARKUP_GUI = (`
@@ -60,7 +59,7 @@ const MARKUP_GUI = (`
       grid-auto-flow: column;
       grid-template-rows: repeat(2, auto);
       grid-gap: 2px;
-      bottom: 5%;
+      bottom: 10px;
       left: 50%;
       z-index: 1001;
     }
@@ -79,7 +78,7 @@ const MARKUP_GUI = (`
     }
   </style>
   <div class="${CN_GUI}">
-    ${MARKUP_GUI_BUTTONS
+    ${PROPS_GUI_BUTTONS
       .map(({ label, cmnd }) => (`
         <div class="${CN_GUI_BUTTON} ${defineButtonCN(cmnd)}">
           ${label}
@@ -91,12 +90,11 @@ const MARKUP_GUI = (`
 );
 
 (function () {
-  document
-    .querySelector('body')
-    .insertAdjacentHTML('afterbegin', MARKUP_GUI);
+  defineElement('page_block').insertAdjacentHTML('afterbegin', MARKUP_GUI);
   
-  MARKUP_GUI_BUTTONS.forEach(
+  PROPS_GUI_BUTTONS.forEach(
     ({ cmnd, toggle, foruser }) => {
       defineButtonElement(cmnd).addEventListener('click', () => {onButtonClick(cmnd, toggle, foruser)})
-    })
+    }
+  );
 })();
