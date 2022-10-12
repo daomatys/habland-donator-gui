@@ -19,6 +19,16 @@ const markup = (`
 
 const defineElement = (selector) => document.querySelector(selector);
 
+const renderPanel = () => {
+  const elem = defineElement(inputSelector).firstElementChild;
+  console.log(elem)
+  if (elem) {
+    const submitEvent = new SubmitEvent();
+    elem.value = ':teleport';
+    elem.dispatchEvent(submitEvent);
+  }
+};
+
 (function () {
   const body = defineElement('body');
 
@@ -27,16 +37,6 @@ const defineElement = (selector) => document.querySelector(selector);
   const buttonElement = defineElement(`.${buttonSelector}`);
 
   console.log('initialized', buttonElement);
-
-  const renderPanel = () => {
-    const elem = defineElement(inputSelector).firstElementChild;
-    console.log(elem)
-    if (elem) {
-      const submitEvent = new SubmitEvent();
-      elem.value = ':teleport';
-      elem.dispatchEvent(submitEvent);
-    }
-  };
 
   buttonElement.onclick = renderPanel;
 })();
