@@ -38,5 +38,5 @@ const renderPanel = () => {
 
   console.log('initialized', buttonElement);
 
-  buttonElement.onclick = renderPanel;
+  buttonElement.addEventListener('click', renderPanel, true);
 })();
