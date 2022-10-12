@@ -12,6 +12,14 @@
 const inputClassName = 'input-sizer';
 const buttonClassName = 'init-button';
 const markup = (`
+  <style type="text/css">
+    .${buttonClassName} {
+      position: absolute;
+      top: 10%;
+      left: 10%;
+      color: #232323;
+    }
+  </style>
   <button class="${buttonClassName}">
     hello
   </button>`
