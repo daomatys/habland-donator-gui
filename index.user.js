@@ -30,7 +30,7 @@ const MARKUP_BUTTON = (`
     }
   </style>
   <button class="${CN_BUTTON}">
-    INITIALIZE GUI
+    INIT GUI
   </button>`
 );
 
@@ -49,17 +49,20 @@ const MARKUP_GUI = (`
     }
   </style>
   <div class="${CN_GUI}">
-    ${MARKUP_GUI_BUTTONS.map(({ label, suffix, toggle }) => (`
-      <div class="${CN_GUI_BUTTON}-${suffix} ${toggle && `${CN_GUI_BUTTON}-off`}">
-        ${label}
-      </div>`
-    ))}
+    ${MARKUP_GUI_BUTTONS
+      .map(({ label, suffix, toggle }) => (`
+        <div class="${CN_GUI_BUTTON}-${suffix} ${toggle && `${CN_GUI_BUTTON}-off`}">
+          ${label}
+        </div>`
+      ))
+      .join('')
+    }
   </div>`
 );
 
 const defineElement = (className) => {
   const elem = document.querySelector(`.${className}`);
-  console.log(elem)
+  console.log(elem);
   return elem;
 };
 
@@ -86,6 +89,10 @@ const renderGUI = () => {
   document
     .querySelector('body')
     .insertAdjacentHTML('afterbegin', MARKUP_BUTTON);
+
+  document
+    .querySelector('body')
+    .insertAdjacentHTML('afterbegin', MARKUP_GUI);
 
   defineElement(CN_BUTTON)
     .addEventListener('click', () => {renderGUI();});
