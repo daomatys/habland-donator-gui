@@ -9,19 +9,21 @@
 // @grant         none
 // ==/UserScript==
 
-const inputClassName = 'input-sizer';
-const buttonClassName = 'init-button';
+const CN_INPUTWRAP = 'input-sizer';
+const CN_BUTTON = 'init-button';
+
 const markup = (`
   <style type="text/css">
-    .${buttonClassName} {
+    .${CN_BUTTON} {
       position: absolute;
       top: 10%;
       left: 10%;
-      color: #232323;
+      z-index: 1000;
+      background-color: #232323;
     }
   </style>
-  <button class="${buttonClassName}">
-    hello
+  <button class="${CN_BUTTON}">
+    INITIALIZE GUI
   </button>`
 );
 
@@ -32,7 +34,7 @@ const defineElement = (className) => {
 };
 
 const renderPanel = () => {
-  const inputWrap = defineElement(inputClassName);
+  const inputWrap = defineElement(CN_INPUTWRAP);
 
   if (inputWrap) {
     const input = inputWrap.firstElementChild;
@@ -55,6 +57,6 @@ const renderPanel = () => {
     .querySelector('body')
     .insertAdjacentHTML('afterbegin', markup);
 
-  defineElement(buttonClassName)
+  defineElement(CN_BUTTON)
     .addEventListener('click', () => {renderPanel()});
 })();
