@@ -10,8 +10,9 @@
 // ==/UserScript==
 
 const CN_INPUT_WRAP = 'input-sizer';
+
 const CN_GUI = 'don-gui';
-const CN_GUI_BUTTON = 'don-gui__button';
+const CN_GUI_BUTTON = `${CN_GUI}__button`;
 
 const defineButtonCN = (cmnd) => {
   return `${CN_GUI_BUTTON}-${cmnd}`;
@@ -69,7 +70,10 @@ const MARKUP_GUI = (`
       z-index: 1001;
     }
     .${CN_GUI_BUTTON} {
-      background-color: #432000;
+      width: 16px;
+      height: 16px;
+      text-align: center;
+      background-color: #d4b5f7;
       z-index: 1002;
     }
     .${CN_GUI_BUTTON}-toggled {
@@ -78,8 +82,8 @@ const MARKUP_GUI = (`
   </style>
   <div class="${CN_GUI}">
     ${MARKUP_GUI_BUTTONS
-      .map(({ label, cmnd, toggle }) => (`
-        <div class="${defineButtonCN(cmnd, toggle)} }">
+      .map(({ label, cmnd }) => (`
+        <div class="${CN_GUI_BUTTON} ${defineButtonCN(cmnd)}">
           ${label}
         </div>`
       ))
