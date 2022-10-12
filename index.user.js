@@ -25,7 +25,10 @@ const defineElement = (className) => {
 
 const renderPanel = () => {
   console.log('click');
-  const elem = defineElement(buttonClassName).firstElementChild;
+  const elem = defineElement(buttonClassName);
+  console.log(elem);
+  const input = elem.firstChild;
+  console.log(input);
 
   const submitEvent = new SubmitEvent();
   elem.value = ':teleport';
@@ -35,10 +38,9 @@ const renderPanel = () => {
 
 (function () {
   const body = document.querySelector('body');
+  const buttonElement = defineElement(buttonClassName);
 
   body.insertAdjacentHTML('afterbegin', markup);
-
-  const buttonElement = defineElement(buttonClassName);
 
   console.log('initialized', buttonElement);
 
