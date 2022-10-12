@@ -12,12 +12,12 @@
 const inputClassName = 'input-sizer';
 const buttonClassName = 'init-button';
 const markup = (`
-  <div class="${buttonClassName}">
+  <button class="${buttonClassName}">
     hello
-  </div>`
+  </button>`
 );
 
-const getElemByCName = (className) => {
+const defineElement = (className) => {
   const elem = document.querySelector(`.${className}`);
   console.log(elem)
   return elem;
@@ -25,7 +25,7 @@ const getElemByCName = (className) => {
 
 const renderPanel = () => {
   console.log('click');
-  const elem = getElemByCName(`.${buttonClassName}`).firstElementChild;
+  const elem = defineElement(buttonClassName).firstElementChild;
 
   const submitEvent = new SubmitEvent();
   elem.value = ':teleport';
@@ -33,11 +33,11 @@ const renderPanel = () => {
 };
 
 (function () {
-  const body = getElemByCName('body');
+  const body = document.querySelector('body');
 
   body.insertAdjacentHTML('afterbegin', markup);
 
-  const buttonElement = getElemByCName(buttonClassName);
+  const buttonElement = elem(buttonClassName);
 
   console.log('initialized', buttonElement);
 
