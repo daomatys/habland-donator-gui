@@ -24,11 +24,11 @@ const defineElement = (className) => {
 };
 
 const renderPanel = () => {
-  console.log('click');
-  const elem = defineElement(inputClassName);
-  console.log(elem);
-  const input = elem.firstElementChild;
-  console.log(input);
+  const inputWrap = defineElement(inputClassName);
+  console.log('inputWrap: ', inputWrap);
+
+  const input = inputWrap.firstElementChild;
+  console.log('input: ', input);
 
   if (input) {
     const submitEvent = new SubmitEvent();
