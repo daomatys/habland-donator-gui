@@ -8,32 +8,36 @@
 // @match         https://vk.com/app4315377_142573694
 // @grant         none
 // ==/UserScript==
+const inputSelector = '.input-sizer';
+const buttonSelector = 'init-button'
+const markup = (`
+  <button class="${buttonSelector}">
+    hello
+  </button>`
+);
+
+const defineElement = (selector) => (
+  document.querySelector(selector)
+);
 
 (function () {
-  const inputSelector = '.input-sizer';
-  const buttonSelector = 'init-button'
-  
-  const markup = (`
-    <button class="${buttonSelector}">
-      hello
-    </button>`
-  );
-
-  const body = document.querySelector('body');
+  const body = defineElement('body');
 
   body.insertAdjacentHTML('afterbegin', markup);
 
-  const buttonElement = document.querySelector(`.${buttonSelector}`);
+  const buttonElement = defineElement(`.${buttonSelector}`);
 
   console.log('initialized', buttonElement);
 
-  buttonElement.addEventListener('click', () => {
-    const elem = document.querySelector(inputSelector).firstElementChild;
+  const renderPanel = () => {
+    const elem = defineElement(inputSelector).firstElementChild;
     console.log(elem)
     if (elem) {
       const submitEvent = new SubmitEvent();
       elem.value = ':teleport';
       elem.dispatchEvent(submitEvent);
     }
-  });
+  };
+
+  buttonElement.addEventListener('click', renderPanel);
 })();
