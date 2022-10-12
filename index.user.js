@@ -15,8 +15,8 @@ const CN_GUI = 'don-gui';
 const CN_GUI_BUTTON = 'don-gui__button';
 
 const MARKUP_GUI_BUTTONS = [
-  { label: 'T', suffix: 'teleport', acton: _, toggle: true  },
-  { label: 'X', suffix: 'shoot',    acton: _, toggle: false },
+  { label: 'T', suffix: 'teleport', acton: false, toggle: true  },
+  { label: 'X', suffix: 'shoot',    acton: false, toggle: false },
 ];
 
 const MARKUP_BUTTON = (`
@@ -31,8 +31,8 @@ const MARKUP_BUTTON = (`
   </style>
   <button class="${CN_BUTTON}">
     INITIALIZE GUI
-  </button>
-`);
+  </button>`
+);
 
 const MARKUP_GUI = (`
   <style type="text/css">
@@ -50,12 +50,12 @@ const MARKUP_GUI = (`
   </style>
   <div class="${CN_GUI}">
     ${MARKUP_GUI_BUTTONS.map(({ label, suffix, toggle }) => (`
-      <button class="${CN_GUI_BUTTON}-${suffix} ${toggle && `${CN_GUI_BUTTON}-off`}">
+      <div class="${CN_GUI_BUTTON}-${suffix} ${toggle && `${CN_GUI_BUTTON}-off`}">
         ${label}
-      </button>`
+      </div>`
     ))}
-  </div>
-`);
+  </div>`
+);
 
 const defineElement = (className) => {
   const elem = document.querySelector(`.${className}`);
