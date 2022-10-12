@@ -8,17 +8,16 @@
 // @match         https://vk.com/app4315377_142573694
 // @grant         none
 // ==/UserScript==
+
 const inputSelector = '.input-sizer';
-const buttonSelector = 'init-button'
+const buttonSelector = 'init-button';
 const markup = (`
   <button class="${buttonSelector}">
     hello
   </button>`
 );
 
-const defineElement = (selector) => (
-  document.querySelector(selector)
-);
+const defineElement = (selector) => document.querySelector(selector);
 
 (function () {
   const body = defineElement('body');
@@ -39,5 +38,5 @@ const defineElement = (selector) => (
     }
   };
 
-  buttonElement.addEventListener('click', renderPanel);
+  buttonElement.onclick = renderPanel;
 })();
