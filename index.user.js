@@ -14,12 +14,12 @@ const CN_INPUT = 'chat-input';
 const CN_GUI = 'don-gui';
 const CN_GUI_BUTTON = `${CN_GUI}__button`;
 
-const defineButtonCN = (cmnd) => {
-  return `${CN_GUI_BUTTON}-${cmnd}`;
-};
-
 const defineElement = (className) => {
   return document.querySelector(`.${className}`);
+};
+
+const defineButtonCN = (cmnd) => {
+  return `${CN_GUI_BUTTON}-${cmnd}`;
 };
 
 const defineButtonElement = (cmnd) => {
@@ -30,9 +30,10 @@ const onButtonClick = (cmnd, toggle, foruser) => {
   const input = defineElement(CN_INPUT);
 
   if (input) {
-    const submitEvent = new SubmitEvent();
     input.value = `:${cmnd} `;
+
     if (!foruser) {
+      const submitEvent = new SubmitEvent();
       input.dispatchEvent(submitEvent);
     }
     if (toggle) {
@@ -42,7 +43,7 @@ const onButtonClick = (cmnd, toggle, foruser) => {
     }
     console.log('done!');
   } else {
-    console.log('input not found');
+    console.log('input: ', input);
   }
 };
 
