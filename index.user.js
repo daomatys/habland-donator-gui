@@ -105,18 +105,19 @@ const observeMutations = (mutationList, observer) => {
   mutationList.forEach((mutation) => {
     if (mutation.type === 'childList') {
       console.log('A child node has been added or removed.');
+      console.log(mutation);
     }
   });
 };
 
-const observer = new MutationObserver(observeMutations);
-
 (function () {
+  const observer = new MutationObserver(observeMutations);
+
   observer.observe(document.body, { childList: true });
 
   window.addEventListener('load', () => {
     renderGUI().then(() => {
-      console.log('GUI successfully loaded.');
+      console.log('Habland Donator GUI initialized.');
     });
   });
 })();
