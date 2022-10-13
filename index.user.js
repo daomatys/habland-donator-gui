@@ -7,6 +7,7 @@
 // @author        daomatys
 // @match         https://vk.com/app4315377_142573694
 // @grant         none
+// @run-at        document-start
 // ==/UserScript==
 
 const CN_GUI = 'don-gui';
@@ -89,21 +90,30 @@ const MARKUP_GUI = (`
 
 const renderGUI = async () => {
   return new Promise((resolve) => {
-    setTimeout(() => {
-      defineElement('page_block').insertAdjacentHTML('afterbegin', MARKUP_GUI);
-  
-      PROPS_GUI_BUTTONS.forEach(
-        ({ cmnd, toggle, foruser }) => {
-          defineButtonElement(cmnd).addEventListener('click', () => {onButtonClick(cmnd, toggle, foruser)})
-        }
-      );
-      resolve();
-    }, 6000);
+    defineElement('page_block').insertAdjacentHTML('afterbegin', MARKUP_GUI);
+
+    PROPS_GUI_BUTTONS.forEach(
+      ({ cmnd, toggle, foruser }) => {
+        defineButtonElement(cmnd).addEventListener('click', () => {onButtonClick(cmnd, toggle, foruser)})
+      }
+    );
+    resolve();
   });
-  
 };
 
+const observeMutations = (mutationList, observer) => {
+  mutationList.forEach((mutation) => {
+    if (mutation.type === 'childList') {
+      console.log('A child node has been added or removed.');
+    }
+  });
+};
+
+const observer = new MutationObserver(observeMutations);
+
 (function () {
+  observer.observe(document.body, { childList: true });
+
   window.addEventListener('load', () => {
     renderGUI().then(() => {
       console.log('GUI successfully loaded.');
