@@ -104,8 +104,12 @@ const renderGUI = async () => {
 const observeMutations = (mutationList, observer) => {
   mutationList.forEach((mutation) => {
     if (mutation.type === 'childList') {
-      console.log('A child node has been added or removed.');
-      console.log(mutation);
+      const iframe = document.querySelector('iframe');
+
+      if (iframe) {
+        console.log(iframe);
+        observer.disconnect();
+      }
     }
   });
 };
@@ -113,7 +117,7 @@ const observeMutations = (mutationList, observer) => {
 (function () {
   const observer = new MutationObserver(observeMutations);
 
-  observer.observe(document.body, { childList: true });
+  observer.observe(document.body, { childList: true, subtree: true });
 
   window.addEventListener('load', () => {
     renderGUI().then(() => {
